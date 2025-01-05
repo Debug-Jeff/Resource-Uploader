@@ -32,3 +32,10 @@ Thumbs.db
 # Build output
 dist/
 build/
+
+# Test files
+public/admin.html
+public/faq.html
+public/landing.html
+public/trial.html
+public/login.html

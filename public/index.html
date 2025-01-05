@@ -20,40 +20,53 @@
             <a class="navbar-brand" href="#">
                 <img src="/assets/file-svgrepo-com.svg" alt="Bootstrap" width="30" height="24">
             </a>
-    
+
             <!--Hamburger Toggle Button-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-    
+
             <!--Collapsible Content-->
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <!--Nav-Links-->
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-center">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-center" style="margin-left: 20px;">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Upload</a>
+                        <a class="nav-link" href="resources.html">My Resources</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Files</a>
+                        <a class="nav-link" href="settings.html">Settings</a>
                     </li>
                 </ul>
-    
-                <!--Search-Bar and Profile-->
-        <form class="d-flex justify-content-center align-items-center" role="search">
-            <input class="form-control me-2 w-50" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-primary me-3" type="submit">Search</button>
-            <!-- User Profile Icon -->
-            <div class="profile-circle" style="width: 40px; height: 40px; background-image: url('/assets/img-1.jpg'); background-size: cover; background-position: center; border-radius: 50%; border: 1px solid #ccc;">
-            </div>
-        </form>
+
+                <!-- Search-Bar -->
+                <form class="d-flex justify-content-center align-items-center" role="search">
+                    <input class="form-control me-2 w-50" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary me-3" type="submit">Search</button>
+                    <!-- User Profile Icon -->
+                    <div class="d-flex align-items-center">
+                        <div class="dropdown">
+                            <div class="profile-circle" data-bs-toggle="dropdown"
+                                style="width: 40px; height: 40px; background-image: url('/assets/img-2.jpg'); background-size: cover; background-position: center; border-radius: 50%; border: 1px solid #a9a9a9; cursor: pointer;">
+                            </div>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="settings.html"><i
+                                            class="fas fa-cog me-2"></i>Settings</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item text-danger" href="landing.html" onclick="handleLogout()"><i
+                                            class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </nav>
-    
 
     <!-- Main Section -->
     <main class="container my-5">
@@ -63,8 +76,8 @@
             <div class="upload-area p-4 border rounded mb-3" style="border-style: dashed !important;">
                 <i class="fas fa-cloud-upload-alt fa-3x mb-3 text-secondary"></i>
                 <p class="mb-3">Drag and drop files here or</p>
-                <button class="btn btn-primary mb-3">Choose Files</button>
-                <input type="file" class="d-none" multiple>
+                <button class="btn btn-primary mb-3" onclick="triggerFileInput()">Choose Files</button>
+                <input type="file" class="d-none" id="fileInput" multiple onchange="handleFileUpload(event)">
             </div>
             <div class="supported-files">
                 <p class="text-muted">Supported files:</p>
@@ -82,7 +95,7 @@
         <!-- Resource Gallery -->
         <section class="mb-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2>Your Resources</h2>
+                <h2>Recent Files</h2>
                 <div class="btn-group">
                     <button class="btn btn-outline-secondary active">
                         <i class="fas fa-th"></i>
@@ -95,7 +108,6 @@
 
             <!-- Grid View -->
             <div class="row g-4">
-                <!-- Resource Card Examples -->
                 <div class="col-md-3">
                     <div class="card h-100">
                         <div class="card-body text-center">
@@ -116,8 +128,7 @@
                         </div>
                     </div>
                 </div>
-        
-                <!-- Card 2 -->
+
                 <div class="col-md-3">
                     <div class="card h-100">
                         <div class="card-body text-center">
@@ -138,8 +149,7 @@
                         </div>
                     </div>
                 </div>
-        
-                <!-- Card 3 -->
+
                 <div class="col-md-3">
                     <div class="card h-100">
                         <div class="card-body text-center">
@@ -160,8 +170,7 @@
                         </div>
                     </div>
                 </div>
-        
-                <!-- Card 4 -->
+
                 <div class="col-md-3">
                     <div class="card h-100">
                         <div class="card-body text-center">
@@ -182,26 +191,138 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="far fa-file-image fa-3x text-info mb-3"></i>
+                            <h5 class="card-title text-truncate">Image.png</h5>
+                            <p class="card-text text-muted small">PNG - 3.7 MB</p>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="far fa-file-archive fa-3x text-warning mb-3"></i>
+                            <h5 class="card-title text-truncate">Archive.zip</h5>
+                            <p class="card-text text-muted small">ZIP - 15.8 MB</p>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="far fa-file-video fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title text-truncate">Video.mp4</h5>
+                            <p class="card-text text-muted small">MP4 - 45.2 MB</p>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="far fa-file-audio fa-3x text-success mb-3"></i>
+                            <h5 class="card-title text-truncate">Audio.mp3</h5>
+                            <p class="card-text text-muted small">MP3 - 8.4 MB</p>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </section>
     </main>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit File</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <div class="mb-3">
+                            <label for="fileName" class="form-label">File Name</label>
+                            <input type="text" class="form-control" id="fileName" name="fileName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fileType" class="form-label">File Type</label>
+                            <input type="text" class="form-control" id="fileType" name="fileType" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fileSize" class="form-label">File Size</label>
+                            <input type="text" class="form-control" id="fileSize" name="fileSize" readonly>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer Section -->
     <footer class="bg-light mt-auto">
         <div class="container py-2">
             <div class="row justify-content-between">
-                <!-- Contact Section -->
                 <div class="col-md-4">
                     <h5 class="fw-bold mb-2">Contact</h5>
                     <p class="text-muted mb-1">
-                        <strong>Email:</strong> <a href="mailto:support@example.com" class="text-decoration-none text-muted">support@example.com</a>
+                        <strong>Email:</strong> <a href="mailto:support@example.com"
+                            class="text-decoration-none text-muted">support@example.com</a>
                     </p>
                     <p class="text-muted mb-0">
-                        <strong>Phone:</strong> <a href="tel:5551234567" class="text-decoration-none text-muted">(555) 123-4567</a>
+                        <strong>Phone:</strong> <a href="tel:+254 123-456-789"
+                            class="text-decoration-none text-muted">+254 123-456-789</a>
                     </p>
                 </div>
-    
-                <!-- Legal Section -->
+
                 <div class="col-md-4">
                     <h5 class="fw-bold mb-2">Legal</h5>
                     <ul class="list-unstyled mb-0">
@@ -216,15 +337,11 @@
             </div>
         </div>
     </footer>
-    
-    
-    
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script src="js/index.js"></script>
 </body>
 
 </html>
